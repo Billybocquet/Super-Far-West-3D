@@ -6,7 +6,7 @@ using UnityEngine;
 public class Road : MonoBehaviour
 {
     [Header("Road")]
-    public Transform[] wayPointList;
+    public Transform[] waypointList;
     public string[] roadEvent;
 
     [Header("Gizmos")]
@@ -28,11 +28,11 @@ public class Road : MonoBehaviour
     {
         Gizmos.color = gizmosColor;
         
-        if (wayPointList != null)
+        if (waypointList != null)
         {
-            for (int i = 0; i < wayPointList.Length -1 ; i++)
+            for (int i = 0; i < waypointList.Length -1 ; i++)
             {
-                Gizmos.DrawLine(wayPointList[i].position, wayPointList[i +1].position);
+                Gizmos.DrawLine(waypointList[i].position, waypointList[i +1].position);
                 
                 /*for (int j = (i + 1); j < wayPointList.Length; j++)
                 {

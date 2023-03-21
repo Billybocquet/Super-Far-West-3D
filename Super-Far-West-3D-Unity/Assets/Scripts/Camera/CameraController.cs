@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
     public static CameraController instance;
 
     [Header("Keyboard Controls")] 
-    [SerializeField] private bool UseKeyboard;
+    [SerializeField] private bool useKeyboard;
     [SerializeField] private KeyCode forwardKey;
     [SerializeField] private KeyCode backKey;
     [SerializeField] private KeyCode leftKey;
@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private KeyCode escapeFollowKey;
 
     [Header("Mouse Controls")] 
-    [SerializeField] private bool UseMouse;
+    [SerializeField] private bool useMouse;
     [SerializeField] private KeyCode dragMouse;
     [SerializeField] private KeyCode rotateMouse;
 
@@ -35,7 +35,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float rotationAmount;
     [SerializeField] private Vector3 zoomAmount;
 
-    [Header("Follow")] [SerializeField] private Transform followTransform;
+    [Header("Follow")] 
+    public Transform followTransform;
 
     private Vector3 newPosition;
     private Quaternion newRotation;
@@ -65,12 +66,12 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            if (UseKeyboard)
+            if (useKeyboard)
             {
                 HandleMovementInput();                
             }
 
-            if (UseMouse)
+            if (useMouse)
             {
                 HandleMouseInput();                
             }
