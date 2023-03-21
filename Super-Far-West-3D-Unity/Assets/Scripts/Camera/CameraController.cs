@@ -5,8 +5,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public static CameraController instance;
-    
-    [Header("Keyboard Controls")]
+
+    [Header("Keyboard Controls")] 
+    [SerializeField] private bool UseKeyboard;
     [SerializeField] private KeyCode forwardKey;
     [SerializeField] private KeyCode backKey;
     [SerializeField] private KeyCode leftKey;
@@ -17,8 +18,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] private KeyCode zoomInKey;
     [SerializeField] private KeyCode zoomOutKey;
     [SerializeField] private KeyCode escapeFollowKey;
-    
-    [Header("Mouse Controls")]
+
+    [Header("Mouse Controls")] 
+    [SerializeField] private bool UseMouse;
     [SerializeField] private KeyCode dragMouse;
     [SerializeField] private KeyCode rotateMouse;
 
@@ -55,7 +57,7 @@ public class CameraController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (followTransform != null)
         {
@@ -63,8 +65,15 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            HandleMovementInput();
-            HandleMouseInput();            
+            if (UseKeyboard)
+            {
+                HandleMovementInput();                
+            }
+
+            if (UseMouse)
+            {
+                HandleMouseInput();                
+            }
         }
 
         if (Input.GetKey(escapeFollowKey))
