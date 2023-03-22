@@ -17,15 +17,20 @@ public class AvatarController : MonoBehaviour
     [SerializeField] private int waypointIndex;
     [SerializeField] private float distance;
 
-    private NavMeshAgent agent;
+    [Header("Animator")]
+    private Animator avatarAnimator;
+    [SerializeField] private bool isAnimate;
 
+    [Header("NavMesh")]
+    private NavMeshAgent avatarNavMeshAgent;
     private bool isReverse;
     private bool isInitialized;
     
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        avatarNavMeshAgent = GetComponent<NavMeshAgent>();
+        avatarAnimator = GetComponentInChildren<Animator>();
     }
 
     void RoadInitialization()
@@ -48,7 +53,7 @@ public class AvatarController : MonoBehaviour
             Debug.Log("Route initialisé");
             isInitialized = true;
 
-            agent.SetDestination((waypointPosition[waypointIndex].position));
+            avatarNavMeshAgent.SetDestination((waypointPosition[waypointIndex].position));
         }
     }
 
@@ -58,22 +63,40 @@ public class AvatarController : MonoBehaviour
         if (Input.GetKey(roadInitialization))
         {
             RoadInitialization();
+            
+            isAnimate = false;
         }
         
         if (isInitialized)
         {
-             Travel();           
+             Travel();
+
+             if (!isAnimate)
+             {
+                 avatarAnimator.SetTrigger("IsWalking");
+                 isAnimate = true;
+             }
+        }
+        if (roadReference == null)
+        {
+            isAnimate = false;
+            
+            if (!isAnimate)
+            {
+                avatarAnimator.SetTrigger("IsIdle");
+                isAnimate = true;
+            }
         }
     }
 
     void Travel()
     {
-        if (agent.remainingDistance < distance && !isReverse)
+        if (avatarNavMeshAgent.remainingDistance < distance && !isReverse)
         {
             if (waypointIndex < waypointPosition.Length - 1)
             {
                 waypointIndex++;
-                agent.SetDestination((waypointPosition[waypointIndex].position));
+                avatarNavMeshAgent.SetDestination((waypointPosition[waypointIndex].position));
                 Debug.Log("Road waypoint : " + waypointIndex);
             }
             else
@@ -85,12 +108,12 @@ public class AvatarController : MonoBehaviour
             }
 
         }        
-        if (agent.remainingDistance < distance && isReverse)
+        if (avatarNavMeshAgent.remainingDistance < distance && isReverse)
         {
             if (waypointIndex >= 1)
             {
                 waypointIndex--;
-                agent.SetDestination((waypointPosition[waypointIndex].position));
+                avatarNavMeshAgent.SetDestination((waypointPosition[waypointIndex].position));
                 Debug.Log("Road waypoint : " + waypointIndex);
             }
             else
