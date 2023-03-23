@@ -7,7 +7,10 @@ public class Road : MonoBehaviour
 {
     [Header("Road")]
     public Transform[] waypointList;
-    public string[] roadEvent;
+    
+    [Header("Events")]
+    public string[] eventRoad;
+    public float[] eventProbabilities;
 
     [Header("Gizmos")]
     [SerializeField] private Color gizmosColor;

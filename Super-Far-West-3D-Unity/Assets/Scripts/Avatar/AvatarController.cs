@@ -10,21 +10,21 @@ public class AvatarController : MonoBehaviour
     [SerializeField] private KeyCode roadInitialization;
     
     [Header("Script")]
-    [SerializeField] private Road roadReference;
+    public Road roadReference;
 
     [Header("Road")]
-    [SerializeField] private Transform[] waypointPosition;
+    public Transform[] waypointPosition;
     [SerializeField] private int waypointIndex;
     [SerializeField] private float distance;
 
     [Header("Animator")]
     private Animator avatarAnimator;
-    [SerializeField] private bool isAnimate;
+    [HideInInspector] public bool isAnimate;
 
     [Header("NavMesh")]
     private NavMeshAgent avatarNavMeshAgent;
     private bool isReverse;
-    private bool isInitialized;
+    [HideInInspector] public bool isInitialized;
     
     // Start is called before the first frame update
     void Start()
@@ -33,7 +33,7 @@ public class AvatarController : MonoBehaviour
         avatarAnimator = GetComponentInChildren<Animator>();
     }
 
-    void RoadInitialization()
+    public void RoadInitialization()
     {
         if (roadReference != null)
         {
@@ -52,6 +52,7 @@ public class AvatarController : MonoBehaviour
 
             Debug.Log("Route initialisé");
             isInitialized = true;
+            isAnimate = false;
 
             avatarNavMeshAgent.SetDestination((waypointPosition[waypointIndex].position));
         }
@@ -60,32 +61,29 @@ public class AvatarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(roadInitialization))
+        /*if (Input.GetKey(roadInitialization))
         {
             RoadInitialization();
             
             isAnimate = false;
-        }
+        }*/
         
         if (isInitialized)
         {
              Travel();
 
-             if (!isAnimate)
+             if (roadReference != null && !isAnimate)
              {
                  avatarAnimator.SetTrigger("IsWalking");
                  isAnimate = true;
              }
         }
-        if (roadReference == null)
+        if (!isInitialized && !isAnimate)
         {
-            isAnimate = false;
+
+            avatarAnimator.SetTrigger("IsIdle");
+            isAnimate = true;            
             
-            if (!isAnimate)
-            {
-                avatarAnimator.SetTrigger("IsIdle");
-                isAnimate = true;
-            }
         }
     }
 
@@ -105,6 +103,7 @@ public class AvatarController : MonoBehaviour
                 roadReference = null;
 
                 isInitialized = false;
+                isAnimate = false;
             }
 
         }        
@@ -122,6 +121,7 @@ public class AvatarController : MonoBehaviour
                 roadReference = null;
 
                 isInitialized = false;
+                isAnimate = false;
             }
         }
     }

@@ -609,7 +609,14 @@ MonoBehaviour:
   - {fileID: 2129249215}
   - {fileID: 856666413}
   - {fileID: 1475491490}
-  roadEvent: []
+  eventRoad:
+  - "La cal\xE8che est cass\xE9"
+  - Vous avez soif
+  - Jesus vous appelle
+  eventProbabilities:
+  - 50
+  - 40
+  - 10
   gizmosColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &499884499
 Transform:
@@ -661,7 +668,8 @@ MonoBehaviour:
   - {fileID: 563383689}
   - {fileID: 2018947005}
   - {fileID: 1475491490}
-  roadEvent: []
+  eventRoad: []
+  eventProbabilities: []
   gizmosColor: {r: 1, g: 0.7728097, b: 0, a: 1}
 --- !u!4 &512134377
 Transform:
@@ -935,7 +943,8 @@ MonoBehaviour:
   - {fileID: 756222398}
   - {fileID: 864521114}
   - {fileID: 1475491490}
-  roadEvent: []
+  eventRoad: []
+  eventProbabilities: []
   gizmosColor: {r: 0, g: 0.07280898, b: 1, a: 1}
 --- !u!4 &840242691
 Transform:
@@ -1241,7 +1250,8 @@ MonoBehaviour:
   - {fileID: 1714393422}
   - {fileID: 1778058409}
   - {fileID: 1475491490}
-  roadEvent: []
+  eventRoad: []
+  eventProbabilities: []
   gizmosColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &1209341547
 Transform:
@@ -1359,7 +1369,8 @@ MonoBehaviour:
   - {fileID: 352534503}
   - {fileID: 1846741620}
   - {fileID: 312175411}
-  roadEvent: []
+  eventRoad: []
+  eventProbabilities: []
   gizmosColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &1424112195
 Transform:
@@ -1507,7 +1518,8 @@ MonoBehaviour:
   - {fileID: 1475491490}
   - {fileID: 1991768574}
   - {fileID: 1526275947}
-  roadEvent: []
+  eventRoad: []
+  eventProbabilities: []
   gizmosColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &1542690284
 Transform:
@@ -1589,7 +1601,8 @@ MonoBehaviour:
   - {fileID: 1638451340}
   - {fileID: 1984120374}
   - {fileID: 2097717825}
-  roadEvent: []
+  eventRoad: []
+  eventProbabilities: []
   gizmosColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &1606051170
 Transform:
@@ -1645,7 +1658,8 @@ MonoBehaviour:
   - {fileID: 2108845256}
   - {fileID: 2066580920}
   - {fileID: 1834493784}
-  roadEvent: []
+  eventRoad: []
+  eventProbabilities: []
   gizmosColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &1672769263
 Transform:
@@ -2693,6 +2707,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4866798505350328640, guid: 84924dc7e1fd0a94fa0062f8fe7512f3, type: 3}
+      propertyPath: distance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4866798505350328643, guid: 84924dc7e1fd0a94fa0062f8fe7512f3, type: 3}
       propertyPath: m_Name
       value: Avatar
@@ -2747,6 +2765,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84924dc7e1fd0a94fa0062f8fe7512f3, type: 3}
+--- !u!1 &4866798505811367643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4866798505350328643, guid: 84924dc7e1fd0a94fa0062f8fe7512f3, type: 3}
+  m_PrefabInstance: {fileID: 4866798505811367642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4866798505811367645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866798505811367643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84768140af151904fb8581cfe1acdf0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  northKey: 273
+  southKey: 274
+  estKey: 275
+  westKey: 276
+  northEstKey: 265
+  northWestKey: 263
+  southEstKey: 259
+  southWestKey: 257
+  enterKey: 32
+  RoadList:
+  - {fileID: 499884497}
+  - {fileID: 1209341545}
+  - {fileID: 840242689}
+  - {fileID: 512134375}
+  - {fileID: 1542690282}
+  - {fileID: 1672769261}
+  - {fileID: 1606051168}
+  - {fileID: 1424112193}
+  avatarGameObject: {fileID: 4866798505811367643}
+  cityTransformsList:
+  - {fileID: 1394324058}
+  - {fileID: 320752849}
+  - {fileID: 1943579269}
+  - {fileID: 1768361142}
+  - {fileID: 1475491490}
+  distance: 2
 --- !u!1001 &5393009317326848344
 PrefabInstance:
   m_ObjectHideFlags: 0
